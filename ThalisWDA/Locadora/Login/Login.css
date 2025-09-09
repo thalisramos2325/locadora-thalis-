@@ -1,0 +1,75 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+background-color: rgba(174, 230, 249, 0.6);
+}
+#block-login{
+    background: linear-gradient(to right, #88C9DF, #4B8FAC);
+    position: absolute;
+    padding: 60px 80px; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: rgba(255, 255, 255, 0.18) 1px solid;
+    border-radius: 30px;
+    box-shadow: 0 8px 32px 0 rgba(70, 30, 135, 0.37);
+}
+div#block-login h2{
+    font-family: Arial, Helvetica, sans-serif;
+    color: 	#2C3E50;
+    font-size: 50px;
+    text-align: center;
+}
+div#block-login label{
+    color: 	black   ;
+    margin-left: 10px;
+    font-size: 17px;
+}
+div#block-login input{
+    padding: 7px;
+    border: 1.7px #7a8686 solid;
+    border-radius: 30px;
+    outline: none;
+    margin-bottom: 6px;
+    width: 100%;
+    transition: 0.2s;
+}
+div#block-login button{
+    padding: 10px;
+    margin-top: 5px;
+    width: 100%;
+    border: 1.5px gray solid;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 17px;
+    background-color: rgba(255, 255, 255, 1);
+    transition: 0.1s;
+    font-weight: bold;
+}
+div#block-login button:hover{
+    background-color: #35728a;
+    font-size: 18px;
+}
+button, a#Confirmar{
+text-decoration: none;
+color: black;
+}
+div#block-login p{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    font-weight: 300;
+    text-align: right;
+    transition: 0.2s;
+}
+div#block-login p:hover{
+    text-decoration: underline;
+    font-size: 18.3px;
+}
+div#block-login p a{
+    color: black;
+    text-decoration: none;
+}
+

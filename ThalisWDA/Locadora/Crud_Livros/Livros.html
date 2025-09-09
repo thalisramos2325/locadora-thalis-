@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livros</title>
+    <link rel="--Shortcut icon" href="/Locadora/Imagens/WDA GROUP LOGO.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/Locadora/Crud_Livros/Livroscss.css">
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+        <aside class="Menu-Lateral">
+        <nav>
+        <div class="logo-Menu">
+            <img src="/Locadora/Imagens/WDA GROUP LOGO.png">
+        </div>
+        <ul>
+            <li class="Item-Menu">
+                <a href="/Locadora/Dashboard/Dashboard.html">
+                    <span class="icon"><i class="bi bi-columns-gap"></i></span>
+                    <span class="txt-link">Dashboard</span>
+                </a>
+            </li>
+            <li class="Item-Menu">
+                <a href="/Locadora/Crud_Usuarios/Usuarios.html">
+                    <span class="icon"><i class="bi bi-person"></i></span>
+                    <span class="txt-link">Usuários</span>
+                </a>
+            </li>
+            <li class="Item-Menu">
+                <a href="#">
+                    <span class="icon"><i class="bi bi-book"></i></span>
+                    <span class="txt-link">Livros</span>
+                </a>
+            </li>
+            <li class="Item-Menu">
+                <a href="/Locadora/Crud_Locatarios/Locatarios.html">
+                    <span class="icon"><i class="bi bi-file-earmark-fill"></i></span>
+                    <span class="txt-link">Locatários</span>
+                </a>
+            </li>
+            <li class="Item-Menu">
+                <a href="/Locadora/Crud_Alugueis/Alugueis.html">
+                    <span class="icon"><i class="bi bi-bank"></i></span>
+                    <span class="txt-link">Aluguéis</span>
+                </a>
+            </li>
+            <li class="Item-Menu">
+                <a href="/Locadora/Crud_Editoras/Editoras.html">
+                    <span class="icon"><i class="bi bi-bookmark"></i></span>
+                    <span class="txt-link">Editoras</span>
+                </a>
+            </li>
+            <li class="Item-Menu">
+                <a href="/Locadora/Login/Login.html">
+                    <span class="icon"><i class="bi bi-box-arrow-left"></i></span>
+                    <span class="txt-link">Sair</span>
+                </a>
+            </li>
+        </ul>
+    </nav><!--Tag feita para conjunto de links-->
+    </aside>
+    <main class="main-content">
+        <div class="table-background">
+        <header class="main-header">
+            <h1>Livros</h1>
+            <div class="barradpesq">
+            <input id="searchbar" type="search" placeholder="Pesquisar livros...">
+            <span class="icon"><i class="bi bi-search"></i></span>
+            </div>
+        </header>
+                <div class="alinhaessamerda">
+                <button class="add-button butao-cadastro" onclick="abrirpopupCadastrarlivro()">Cadastrar Livro</button>
+                <div id="paginacao" class="paginacao"></div>
+                </div>
+        <div class="tabela-responsive">
+            <table class="tabeladlivros" id="tabela-dados">
+                <thead>
+                        <th>ID</th>
+                        <th onclick="ordenarTabelaPor('name')">Nome</th>
+                        <th onclick="ordenarTabelaPor('author')">Autor</th>
+                        <th onclick="ordenarTabelaPor('publisher')">Editora</th>
+                        <th>Data de Lançamento</th>
+                        <th onclick="ordenarTabelaPor('totalQuantity')">Estoque</th>
+                        <th>Ações</th>
+                </thead>
+                <tbody id="content-table">
+                    <tr>
+                        <!-- <td>A Menina que Roubava Livro</td>
+                        <td>Markus Zusak</td>
+                        <td>Arco Literário</td>
+                        <td>01/02/2006</td>
+                        <td>12</td>
+                        <td><button class="botao-editar" onclick="abrirpopupEditarlivro(this)"><i class="bi bi-pencil-square"></i></button><button class="botao-deletar" onclick="abrirpopupDeletarlivro(this)"><i class="bi bi-trash-fill"></i></button> -->
+                    </tr>
+                </tbody>
+            </table>
+                <!-- <div class="bar-content">
+                    <div class="addition-bar">
+                        <button class="butao-cadastro" onclick="abrirpopupCadastrarlivro()">Cadastrar Livro</button>
+                    </div>
+                </div> -->
+        </div>
+        </div>
+    </main>
+
+    <dialog id="popupCadastrarlivro">
+        <form method="dialog" class="modal-content">
+            <h3>Cadastrar Novo Livro</h3>
+            <label for="novoNomeLivro">Nome do Livro:</label>
+            <input type="text" id="novoNomeLivro" required><br>
+
+            <label for="novoAutorLivro">Nome do Autor:</label>
+            <input type="text" id="novoAutorLivro" required><br>
+
+            <label for="novoEditoraLivro">Nome da Editora:</label>
+            <select id="novoEditoraLivro"></select><br>
+
+            <label for="novoDataLancamento">Data de Lançamento:</label>
+            <input type="date" id="novoDataLancamento" required><br>
+
+            <label for="novoEstoque">Quantidade de Estoque:</label>
+            <input type="number" id="novoEstoque" required><br>
+            <div class="Buttons">
+                <button type="button" onclick="salvarNovoCadastro()" class="Save-button">Salvar</button>
+                <button type="button" onclick="fecharpopupCadastrarlivro()" class="Cancel-button">Cancelar</button>
+            </div>
+        </form>
+    </dialog>
+    <dialog id="popupEditarlivro">
+        <form method="dialog" class="modal-content">
+            <h2>Editar Livro</h2>
+            <input type="hidden" id="editLivroRowIndex">
+            <label for="editNomeLivro">Nome do Livro:</label>
+            <input type="text" id="editNomeLivro" required><br>
+
+            <label for="editAutorLivro">Nome do Autor:</label>
+            <input type="text" id="editAutorLivro" required><br>
+
+            <label for="editEditoraLivro">Nome da Editora:</label>
+            <select id="editEditoraLivro"></select><br>
+
+            <label for="editDataLancamento">Data de Lançamento:</label>
+            <input type="date" id="editDataLancamento" required><br>
+
+            <label for="editEstoque">Quantidade de Estoque:</label>
+            <input type="number" id="editEstoque" required><br>
+            <div class="Buttons">
+                <button type="button" onclick="salvarEdicaoLivro()" class="Save-button">Atualizar</button>
+                <button type="button" onclick="fecharpopupEditarlivro()" class="Cancel-button">Cancelar</button>
+            </div>
+        </form>
+    </dialog>
+    <dialog id="popupDeletarlivro">
+        <form method="dialog" class="modal-content">
+            <h2>Excluir Livro</h2>
+            <p>Tem certeza que deseja excluir o livro: <br><strong id="Nomelivroexcluido"></strong>?</p>
+            <input type="hidden" id="NomelivroexcluidoIndex">
+            <div class="Buttons">
+                <button type="button" onclick="confirmarExclusaoLivro()" class="Save-button">Sim</button>
+                <button type="button" onclick="fecharpopupDeletarlivro()" class="Cancel-button">Não</button>
+            </div>
+        </form>
+    </dialog>
+    <script src="/Locadora/Crud_Livros/Livrosjs.js"></script>
+</body>
+</html>

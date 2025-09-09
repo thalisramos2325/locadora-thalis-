@@ -1,0 +1,532 @@
+ *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        body{
+            height: 100vh;
+            background: linear-gradient(240deg, rgba(128, 128, 128, 0.599), rgba(255, 255, 255, 0.533));
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .Menu-Lateral{
+            width: 80px;
+            height: 100%;
+            background: linear-gradient(to right, rgba(136, 201, 223, 0.8), rgba(75, 143, 172, 0.8));
+            padding: 40px 0 40px 1%;/*Cima, Direita,Baixo, Esquerda*/
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            transition: .2s;
+        }
+        .Menu-Lateral:hover{
+            width: 250px;
+        }
+        .logo-Menu{
+            text-align: center;
+        }
+        .logo-Menu img{
+            width: 60px;
+            height: auto;
+            margin-top: -100px;
+        }
+        ul{
+            height: 100%;
+            list-style-type: none;
+        }
+        ul li.Item-Menu{
+            transition: .2s;
+            width: 220px;
+        }
+        ul li.Item-Menu:hover{
+            background: rgba(0, 82, 82, 0.7);
+            border-radius: 25px;
+        }
+        ul li.Item-Menu a{
+            color: rgba(27, 42, 56, 1);
+            text-decoration: none;
+            font-size: 20px;
+            padding: 20px 4%;
+            display: inline-block;
+            margin: 10px 10px;
+            line-height: 25px;
+            border-radius: 50px;
+        }
+        ul li.Item-Menu a .txt-link{
+            margin-left: 20px;
+        }
+        ul li.Item-Menu a .icon i{ 
+            font-size: 25px;
+            margin-left: -5px;
+        }
+        .icon_exit{
+            top: 200px;
+            margin-left: 10px;
+        }
+        .icon_exit i{
+            font-size: 25px;
+            color: black;
+            transition: 0.1s;
+        }
+        .icon_exit i:hover{
+            font-size: 27px;
+        }
+        .main-content{
+        margin-left: 80px; /* largura da barra lateral fechada */
+        transition: margin-left 0.3s ease;
+        margin-top: 20px;
+        }
+        .table-background{
+        background-color: rgba(255, 255, 255, 1); 
+        padding: 30px 40px 40px 40px; 
+        border-radius: 25px;
+        box-sizing: border-box;
+        transition: background-color 0.3s ease;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        max-width: 95%; /* para não ultrapassar muito na largura */
+        margin: auto; /* centraliza horizontalmente */ 
+        }
+        .main-header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between; /* título à esquerda, pesquisa à direita */
+        gap: 16px;
+        margin-bottom: 12px;
+        padding: 0; /* padding do header fica dentro do .table-background */
+        }
+        .main-header h1{
+        margin: 0;
+        padding: 0;
+        color: #006666;
+        font-size: 28px;
+        }
+        .main-header div.barradpesq{
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        }
+        .main-header div.barradpesq input#searchbar{
+        border-radius: 10px;
+        padding: 6px 10px;  /* use valores com unidade */
+        border: 1px solid #ccc;
+        width: 220px;    
+        }
+        .Menu-Lateral:hover ~ .main-content {
+            margin-left: 250px;
+}
+        .tabela-responsive{
+        /* margin: 0;
+        padding-top: 8px;
+        transform: none;
+        width: 100%; */
+            width: 100%;
+            overflow-x: auto; /* scroll lateral no mobile */
+            -webkit-overflow-scrolling: touch;
+    }
+    .alinhaessamerda{
+        display: flex;
+        justify-content: space-between ;
+    }
+    button.butao-cadastro{
+            background-color: #007BFF;
+            color: white;
+            font-weight: bold;
+            border-color: #0056b3;
+            cursor: pointer;
+            /* padding: 8px 12px; */
+    }
+    button.butao-cadastro:hover{
+            background: rgba(0, 123, 255, 0.65);
+            color: white;
+            border-color: #007BFF;
+    }
+        #paginacao{
+        margin-top: 15px;
+        text-align: right;
+        }
+        /* Estilo básico dos botões */
+        #paginacao button{
+        background-color: #f4f4f4;
+        border: 1px solid #ccc;
+        color: #333;
+        /* padding: 8px 12px; */
+        margin: 0 3px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        }
+
+        /* Efeito ao passar o mouse */
+        #paginacao button:hover {
+        background: rgba(0, 123, 255, 0.7);
+        color: white;
+        border-color: #007BFF;
+        }
+
+        /* Botão ativo (página atual) */
+        #paginacao button.ativa {
+        background-color: #007BFF;
+        color: white;
+        font-weight: bold;
+        border-color: #0056b3;
+        cursor: default;
+        }
+    .tabeladalugueis{
+        padding: 0;
+        margin-bottom: 10px;
+        text-align: center;
+        width: 100%;             /* Antes era 80%: agora usa 100% do .table-background */
+        border-radius: 10px;
+        border-collapse: collapse;
+        overflow: hidden;        /* evita cantos cortados quando hover altera bg */
+    }
+        thead{
+        background: linear-gradient(to right, rgba(136, 201, 223, 1), rgba(75, 143, 172, 0.8));
+        color: rgb(38, 38, 92);
+        font-weight: bold;
+    }
+    thead th{
+        background: rgba(255,255,255,0.06); /* leve diferenciação, opcional */
+    }
+    th, td {
+    padding: 0.6em;
+}
+    th{
+        cursor: pointer;
+    }
+tr:hover{
+    background-color: rgba(222,222,222,0.12);
+}
+button{
+        background-color: #f4f4f4;
+        border: 1px solid #ccc;
+        color: #333;
+        padding: 8px 12px;
+        margin: 0 3px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+}
+button.botao-editar{
+    background: linear-gradient(to right, rgba(136, 201, 223, 0.8), rgba(75, 143, 172, 0.8));
+    border-radius: 5px;
+    color: white;
+    padding: 6px 8px;
+}
+button.botao-editar:hover{
+    background: linear-gradient(to right, rgba(136, 201, 223, 1), rgba(75, 143, 172, 1));
+}
+button.botao-deletar{
+    background: rgba(255, 0, 0, 0.7);
+    border-radius: 5px;
+    color: white;
+    padding: 6px 8px;
+}
+button.botao-deletar:hover{
+    background: rgba(255, 0, 0, 0.85);
+}
+button:hover{
+    font-size: 15.2px;
+}
+dialog[open] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#popupCadastraraluguel{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px 50px;
+    background: linear-gradient(to right, #88C9DF, #4B8FAC);
+    position: fixed;
+    border: 2px solid #006666;
+    border-radius: 30px;
+}
+form.modal-content{
+    display: block;
+}
+form.modal-content h3{
+    text-align: center;
+    padding-bottom: 10px;
+    font-size: 25px;
+    color:#1B2A38;
+}
+form.modal-content label{
+    margin-left: 10px;
+    font-family: sans-serif;
+}
+form.modal-content input{
+    padding: 6px;
+    width: 100%;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    outline: none;
+    border-radius: 30px;
+    border: none;
+}
+.Buttons{
+    display: flex;
+    gap: 39%;
+}
+form.modal-content div.Buttons button{
+    padding: 7px;
+    margin-top: 10px;
+    border-radius: 7px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+form.modal-content button.Save-button{
+    width: 130px;
+    padding: 2px;
+    height: 35px;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: 0.2s;
+    border-top: #2F6F8F 2px solid;
+    background-color: white;
+}
+form.modal-content button.Save-button:hover{
+    background-color: #2F6F8F;
+    font-size: 16.5px;
+}
+form.modal-content button.Cancel-button{
+    width: 130px;
+    padding: 2px;
+    height: 35px;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: 0.2s;
+    border-top: #2F6F8F 2px solid;
+    background-color: white;
+}
+form.modal-content button.Cancel-button:hover{
+    background-color: #c95454;
+    font-size: 16.5px;
+}
+#popupCadastrarAluguel{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px 50px;
+    background: linear-gradient(to right, #88C9DF, #4B8FAC);
+    position: fixed;
+    border: 2px solid #006666;
+    border-radius: 30px;
+}
+#popupEditarAluguel{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px 50px;
+    background: linear-gradient(to right, #88C9DF, #4B8FAC);
+    position: fixed;
+    border: 2px solid #006666;
+    border-radius: 30px;
+}
+form.modal-content{
+    display: block;
+}
+form.modal-content h2{
+    text-align: center;
+    padding-bottom: 10px;
+    font-size: 30px;
+    color:#1B2A38;
+}
+form.modal-content label{
+    margin-left: 10px;
+    font-family: sans-serif;
+}
+form.modal-content input{
+    padding: 6px;
+    width: 100%;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    outline: none;
+    border-radius: 30px;
+    border: none;
+}
+#popupDeletarAluguel{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px 50px;
+    background: linear-gradient(to right, #88C9DF, #4B8FAC);
+    position: fixed;
+    border: 2px solid #006666;
+    border-radius: 30px;
+}
+
+
+/* Animação suave de entrada */
+@keyframes popupShow {
+    from {
+        transform: translate(-50%, -50%) scale(0.7);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+dialog[open] {
+  animation: popupIn 0.3s ease forwards;
+}
+
+dialog.fechar-animado {
+  animation: popupOut 0.3s ease forwards;
+}
+/* Animação suave de saída */
+@keyframes popupHide {
+    from {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: translate(-50%, -50%) scale(0.7);
+        opacity: 0;
+    }
+}
+
+/* Aplica no abrir */
+#popupCadastrarAluguel[open],
+#popupEditarAluguel[open],
+#popupDeletarAluguel[open] {
+    animation: popupShow 0.3s ease forwards;
+}
+
+#popupCadastrarAluguel.fechar-animado {
+  animation: popupHide 0.3s ease forwards;
+}
+#popupEditarAluguel.fechar-animado,
+#popupDeletarAluguel.fechar-animado {
+  animation: popupHide 0.3s ease forwards;
+}
+
+
+/* Estilização dos selects */
+#popupCadastrarAluguel select,
+#popupEditarAluguel select {
+    padding: 6px;
+    width: 100%;
+    margin: 4px 0;
+    border-radius: 30px;
+    border: 2px solid #ccc;
+    background: #fff;
+    font-size: 14px;
+    color: #1B2A38;
+    cursor: pointer;
+}
+
+#popupCadastrarAluguel select:focus,
+#popupEditarAluguel select:focus {
+    border-color: #006666;
+    box-shadow: 0 0 5px rgba(0, 102, 102, 0.5);
+}
+
+/* ======= MENU LATERAL RESPONSIVO ======= */
+@media (max-width: 768px) {
+  .Menu-Lateral {
+    width: 70px;
+  }
+
+  .Menu-Lateral:hover {
+    width: 70px; /* não expande no mobile */
+  }
+
+  .Menu-Lateral a .txt-link {
+    display: none; /* esconde textos, mostra só ícones */
+  }
+
+  .main-content {
+    margin-left: 70px;
+  }
+}
+
+/* ======= HEADER RESPONSIVO ======= */
+@media (max-width: 768px) {
+  .main-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .main-header h1 {
+    font-size: 22px;
+  }
+
+  .main-header .barradpesq input#searchbar {
+    width: 100%; /* ocupa largura toda no mobile */
+  }
+}
+
+
+@media (max-width: 768px) {
+  /* Barra lateral */
+  .Menu-Lateral,
+  .Menu-Lateral:hover { width: 70px; }
+  .Menu-Lateral a .txt-link { display: none; }
+  .main-content { margin-left: 70px; }
+
+  /* Header */
+  .main-header { 
+    flex-direction: column; 
+    align-items: flex-start; 
+    gap: 10px; 
+  }
+  .main-header h1 { font-size: 22px; }
+  .main-header .barradpesq input#searchbar { width: 100%; }
+
+  /* Tabela -> vira cards */
+  .tabeladalugueis thead { display: none; }
+  .tabeladalugueis, 
+  .tabeladalugueis tbody, 
+  .tabeladalugueis tr, 
+  .tabeladalugueis td {
+    display: block; 
+    width: 100%;
+  }
+  .tabeladalugueis tr {
+    margin: 10px 0;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 12px;
+    padding: 12px;
+    background: rgba(255,255,255,0.95);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  }
+  .tabeladalugueis td {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+  .tabeladalugueis td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #006666;
+    margin-right: 10px;
+  }
+
+  /* Paginação */
+  #paginacao {
+    display: flex; 
+    justify-content: center; 
+    flex-wrap: wrap; 
+    gap: 6px;
+  }
+  #paginacao button {
+    flex: 1; 
+    min-width: 40px; 
+    max-width: 70px; 
+    padding: 6px;
+  }
+
+  /* Caixa tabela */
+  .table-background { 
+    padding: 20px; 
+    max-width: 100%; 
+    border-radius: 15px; 
+  }
+}

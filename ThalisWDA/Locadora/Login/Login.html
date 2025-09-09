@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log-in</title>
+    <link rel="stylesheet" href="./Login.css">
+    <link rel="--Shortcut icon" href="/Locadora/Imagens/WDA GROUP LOGO.png">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="block-login">
+        <form id="form_Login">
+        <h2>Login</h2><br>
+        <label for="email">Digite Seu Email:</label>
+        <input type="email" id="email" name="email" placeholder=""><br><br>
+        <label for="senha">Digite Sua Senha:</label>
+        <input type="password" id="password" name="password" placeholder=""><br><br>
+        <button type="button" onclick="fazerLogin()" id="butaoconfirmar">Confirmar</button><br><br>
+        <p>
+        <a href="/Locadora/Cadastro/password.html">Esqueceu a Senha?</a>
+        </p>
+        </form>
+    </div>
+    <script src="Login.js"></script>
+    <pre id="renderResults"></pre>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editoras</title>
+    <link rel="--Shortcut icon" href="/Locadora/Imagens/WDA GROUP LOGO.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/Locadora/Crud_Editoras/Editoras.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+        <aside class="Menu-Lateral">
+        <nav>
+        <div class="logo-Menu">
+            <img src="/Locadora/Imagens/WDA GROUP LOGO.png">
+        </div>
+        <ul>
+            <li class="Item-Menu">
+                <a href="/Locadora/Dashboard/Dashboard.html">
+                    <span class="icon"><i class="bi bi-columns-gap"></i></span>
+                    <span class="txt-link">Dashboard</span>
+                </a>
+            </li>
+            <li class="Item-Menu">
+                <a href="/Locadora/Crud_Usuarios/Usuarios.html">
+                    <span class="icon"><i class="bi bi-person"></i></span>
+                    <span class="txt-link">Usuários</span>
+                </a>
+            </li>
+            <li class="Item-Menu">
+                <a href="/Locadora/Crud_Livros/Livros.html">
+                    <span class="icon"><i class="bi bi-book"></i></span>
+                    <span class="txt-link">Livros</span>
+                </a>
+            </li>
+            <li class="Item-Menu">
+                <a href="/Locadora/Crud_Locatarios/Locatarios.html">
+                    <span class="icon"><i class="bi bi-file-earmark-fill"></i></span>
+                    <span class="txt-link">Locatários</span>
+                </a>
+            </li>
+            <li class="Item-Menu">
+                <a href="/Locadora/Crud_Alugueis/Alugueis.html">
+                    <span class="icon"><i class="bi bi-bank"></i></span>
+                    <span class="txt-link">Aluguéis</span>
+                </a>
+            </li>
+            <li class="Item-Menu">
+                <a href="/Locadora/Crud_Editoras/Editoras.html">
+                    <span class="icon"><i class="bi bi-bookmark"></i></span>
+                    <span class="txt-link">Editoras</span>
+                </a>
+            </li>
+            <li class="Item-Menu">
+                <a href="/Locadora/Login/Login.html">
+                    <span class="icon"><i class="bi bi-box-arrow-left"></i></span>
+                    <span class="txt-link">Sair</span>
+                </a>
+            </li>
+        </ul>
+    </nav><!--Tag feita para conjunto de links-->
+    </aside>
+    <main class="main-content">
+        <div class="table-background">
+        <header class="main-header">
+            <h1>Editoras</h1>
+            <div class="barradpesq">
+            <input id="searchbar" type="search" onkeyup="pesquisarEditorasGrid()" placeholder="Pesquisar Editoras...">
+            <span class="icon"><i class="bi bi-search"></i></span>
+            </div>
+        </header>
+            <div class="tabela-responsive">
+                        <div class="alinhaessamerda">
+                        <button class="butao-cadastro" onclick="abrirpopupCadastrareditoras()">Cadastrar Editoras</button>
+                        <div id="paginacao" class="paginacao"></div>
+                    </div>
+            <table class="tabeladeditoras" id="tabela-dados">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th onclick="ordenarTabelaPor('name')">Nome</th>
+                        <th onclick="ordenarTabelaPor('email')">Email</th>
+                        <th onclick="ordenarTabelaPor('telephone')">Telefone</th>
+                        <th onclick="ordenarTabelaPor('site')">Site</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="content-table">
+                    <tr>
+                        <!-- <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td> -->
+                    </tr>
+                    <!-- <tr>
+                        <td>Arco Literário</td>
+                        <td>contato@arcoliterario.com.br</td>
+                        <td>11932547788</td>
+                        <td><button class="action-button botao-editar" onclick="abrirpopupEditareditora(this)"><i class="bi bi-pencil-square"></i></button><button class="action-button botao-deletar" onclick="abrirpopupDeletareditora(this)"><i class="bi bi-trash-fill"></i></button>
+                    </tr> -->
+                        </tbody>
+                    </table>
+                    <!-- <div class="bar-content">
+                        <div class="addition-bar">
+                            <button class="add-button butao-cadastro" onclick="abrirpopupCadastrareditoras()">Cadastrar Editoras</button>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </main>
+
+    <dialog id="popupCadastrareditoras">
+        <form method="dialog" class="modal-content">
+            <h3>Cadastrar Nova Editora</h3>
+            <label for="novoNomeEditora">Nome da Editora</label>
+            <input type="text" name="novoNomeEditora" id="novoNomeEditora" required><br>
+
+            <label for="novoEmailEditora">Email da Editora</label>
+            <input type="email" name="novoEmailEditora" id="novoEmailEditora" required><br>
+
+            <label for="novoTelefoneEditora">Telefone da Editora</label>
+            <input type="tel" name="novoTelefoneEditora" id="novoTelefoneEditora" required><br>
+
+            <label for="novoSiteEditora">Site da Editora</label>
+            <input type="text" name="novoSiteEditora" id="novoSiteEditora" required><br>
+            <div class="Buttons">
+                <button type="button" onclick="salvarNovoCadastro()" class="Save-button">Salvar</button>
+                <button type="button" onclick="fecharpopupCadastrareditoras()" class="Cancel-button">Cancelar</button>
+            </div>
+        </form>
+    </dialog>
+    <dialog id="popupEditareditora">
+        <form method="dialog" class="modal-content">
+            <h2>Editar Editora</h2>
+            <input type="hidden" id="editEditoraRowIndex">
+            <label for="editNomeEditora">Nome da Editora:</label>
+            <input type="text" id="editNomeEditora" required><br>
+
+            <label for="editEmailEditora">Email da Editora:</label>
+            <input type="email" id="editEmailEditora" required><br>
+
+            <label for="editTelefoneEditora">Telefone da Editora:</label>
+            <input type="text" id="editTelefoneEditora" required><br>
+
+            <label for="editSiteEditora">Site da Editora:</label>
+            <input type="text" id="editSiteEditora" required><br>
+            <div class="Buttons">
+                <button type="button" onclick="salvarEdicaoEditora()" class="Save-button">Atualizar</button>
+                <button type="button" onclick="fecharpopupEditareditora()" class="Cancel-button">Cancelar</button>
+            </div>
+        </form>
+    </dialog>
+    <dialog id="popupDeletareditora">
+        <form method="dialog" class="modal-content">
+            <h2>Excluir Editora</h2>
+            <p>Tem certeza que deseja excluir a Editora: <br>
+                <strong id="NomeEditoraexcluida"></strong>?</p>
+            <input type="hidden" id="NomeEditoraexcluidoIndex">
+            <div class="Buttons">
+                <button type="button" onclick="confirmarExclusaoEditora()" class="Save-button">Sim</button>
+                <button type="button" onclick="fecharpopupDeletarEditora()" class="Cancel-button">Não</button>
+            </div>
+        </form>
+    </dialog>
+</main>
+    <script src="/Locadora/Crud_Editoras/Editoras.js"></script>
+</body>
+</html>

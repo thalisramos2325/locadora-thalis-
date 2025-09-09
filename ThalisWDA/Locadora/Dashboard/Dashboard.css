@@ -1,0 +1,309 @@
+ *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        body{
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(240deg, rgba(128, 128, 128, 0.599), rgba(255, 255, 255, 0.533));
+
+        }
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+        .Menu-Lateral{
+            width: 80px;
+            height: 100vh;
+            background: linear-gradient(to right, rgba(136, 201, 223, 0.8), rgba(75, 143, 172, 0.8));
+            padding: 40px 0 40px 1%;/*Cima, Direita,Baixo, Esquerda*/
+            position: relative; /* não mais fixed */
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            transition: .2s;
+        }
+        .Menu-Lateral:hover{
+            width: 250px;
+        }
+        
+        @media (max-width: 768px) {
+        .Menu-Lateral {
+            width: 70px;
+        }
+
+        .Menu-Lateral:hover {
+            width: 70px; /* não expande no mobile */
+        }
+
+        .Menu-Lateral a .txt-link {
+            display: none; /* esconde textos, fica só ícone */
+        }
+        }
+        .main-content{
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+            overflow: auto; 
+        }
+        #backgrond-body{
+            background-color: #fff;
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
+            padding: 9.15px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;  /* 2 colunas */
+            grid-template-rows: auto auto;   /* 2 linhas */
+            grid-template-areas:
+                "header header"
+                "livro grafico"
+                "grafico1 grafico2";
+            gap: 20px;
+        }
+        @media (max-width: 768px) {
+        #backgrond-body {
+            grid-template-columns: 1fr;  /* só 1 coluna */
+            grid-template-areas:
+            "header"
+            "livro"
+            "grafico"
+            "grafico1"
+            "grafico2";
+        }
+        }
+        .main-header {
+            grid-area: header; 
+        }
+        .livromaisalugado { 
+            grid-area: livro; 
+        }
+        .chart-content { 
+            grid-area: grafico; 
+        }
+        .chart-box:nth-of-type(1) { 
+            grid-area: grafico1; 
+        }
+        .chart-box:nth-of-type(2) { 
+            grid-area: grafico2; 
+        }
+
+        .logo-Menu{
+            text-align: center;
+        }
+        .logo-Menu img{
+            width: 60px;
+            height: auto;
+            margin-top: -100px;
+        }
+        ul{
+            height: 100%;
+            list-style-type: none;
+        }
+        ul li.Item-Menu{
+            transition: .2s;
+            width: 220px;
+        }
+        ul li.Item-Menu:hover{
+            background: rgba(0, 82, 82, 0.7);
+            border-radius: 25px;
+        }
+        ul li.Item-Menu a{
+            color: rgba(27, 42, 56, 1);
+            text-decoration: none;
+            font-size: 20px;
+            padding: 20px 4%;
+            display: inline-block;
+            margin: 10px 10px;
+            line-height: 25px;
+            border-radius: 50px;
+        }
+        ul li.Item-Menu a .txt-link{
+            margin-left: 20px;
+        }
+        ul li.Item-Menu a .icon i{ 
+            font-size: 25px;
+            margin-left: -5px;
+        }
+        .icon_exit{
+            top: 200px;
+            margin-left: 10px;
+        }
+        .icon_exit i{
+            font-size: 25px;
+            color: black;
+            transition: 0.1s;
+        }
+        .icon_exit i:hover{
+            font-size: 27px;
+        }
+        .main-header h1 {
+            font-size: 26px;
+            color: #004d40;
+        }
+        .container1, .container2 {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;   /* quebra linha se faltar espaço */
+            /* width: 100%; */
+        }
+                /* Cada card (gráfico ou livro) será um quadrado */
+        .square-box {
+            flex: 1;
+            min-width: 250px;
+            min-height: 200px;
+            max-height: 350px;        /* limite de altura */
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(160deg, rgba(136, 201, 223, 0.05), rgba(75, 143, 172, 0.04));
+            transition: 0.3s;
+            overflow: hidden;         /* impede gráfico de vazar */
+        }
+        .square-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+        }
+        .livromaisalugado{
+            grid-area: livro;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+            padding: 20px;
+            border-radius: 16px;
+
+            /* Fundo delicado com transparência */
+            background: linear-gradient(160deg, rgba(136, 201, 223, 0.05), rgba(75, 143, 172, 0.04));
+            
+            /* Borda lateral para dar vida */
+            border-left: 5px solid rgba(75, 143, 172, 0.4);
+
+            /* Sombra leve */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+
+            transition: transform 0.25s, box-shadow 0.25s;
+            min-height: 200px;
+        }
+        .livromaisalugado:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+        .livromaisalugado h3 {
+            font-size: 30px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #004d40; /* verde escuro para manter o tema */
+        }
+        .livromaisalugado p {
+            font-size: 25px;
+            font-weight: 500;
+            color: #00695c;
+            margin: 0;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+        .livromaisalugado .icone {
+            font-size: 36px;
+            margin-bottom: 12px;
+            color: rgba(75, 143, 172, 0.6); /* discreto */
+        }
+        /* ===== GRÁFICO PRINCIPAL ===== */
+        .chart-content {
+            flex: 2;
+            background: linear-gradient(160deg, rgba(136, 201, 223, 0.05), rgba(75, 143, 172, 0.04));
+            border-radius: 15px;
+            padding: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 0; /* evita overflow */
+        }
+        .chart-content canvas,
+        .chart-box canvas {
+            width: 100% !important;
+            height: auto !important;
+            max-height: 280px !important; /* altura fixa e controlada */
+        }
+        /* ===== CONTAINER 2 COM 2 GRÁFICOS ===== */
+        /* .container2 {
+            display: flex;
+            gap: 15px;
+            flex: 1;
+            min-height: 0;
+        } */
+
+        .container2 .chart-box {
+            flex: 1;
+            min-width: 250px;
+            max-height: 350px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container2 .chart-box canvas {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        /* .chart-content{
+            flex: 1; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .chart2-content{
+        width: 1000px;     
+        height: 400px;       
+        margin: auto;       
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        }    */
+        /* .tabela-responsiva{       
+            margin-left: 22%;
+            transform: translate(0px, 65px);
+            border-radius: 5px;
+        }
+        .tabela-responsiva h1{
+            color: #004444;
+        }
+        .tabeladdashboard{
+            border: 3px #006666 solid;
+            margin-bottom: 15px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            text-align: center;
+            width: 75%;
+            border-radius: 5px; 
+            border-collapse: collapse;
+        } */
+        thead th{
+            border-bottom: 1.5px solid #006666;
+        }
+        th, td {
+            padding: 0.5em;
+        }
+        tr:hover{
+            background-color: rgb(222, 222, 222, 0.2);
+        }
+        .header-tabela{
+            display: flex;
+            align-items: center;
+            gap: 24rem;
+            margin-bottom: 15px;
+        }
+        div.header-tabela input#campoPesquisa{
+        border-radius: 10px;
+        padding: 6px 10px;  /* use valores com unidade */
+        border: 1px solid #ccc;
+        width: 175px;   
+        }

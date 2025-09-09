@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>usuários</title>
+    <link rel="--Shortcut icon" href="/Locadora/Imagens/WDA GROUP LOGO.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/Locadora//Crud_Usuarios/Usuarios.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+        <aside class="Menu-Lateral">
+        <nav>
+        <div class="logo-Menu">
+            <img src="/Locadora/Imagens/WDA GROUP LOGO.png">
+        </div>
+        <ul>
+            <li class="Item-Menu">
+                <a href="/Locadora/Dashboard/Dashboard.html">
+                    <span class="icon"><i class="bi bi-columns-gap"></i></span>
+                    <span class="txt-link">Dashboard</span>
+                </a>
+            </li>
+            <li class="Item-Menu">
+                <a href="/Locadora/Crud_Usuarios/Usuarios.html">
+                    <span class="icon"><i class="bi bi-person"></i></span>
+                    <span class="txt-link">Usuários</span>
+                </a>
+            </li>
+            <li class="Item-Menu">
+                <a href="/Locadora/Crud_Livros/Livros.html">
+                    <span class="icon"><i class="bi bi-book"></i></span>
+                    <span class="txt-link">Livros</span>
+                </a>
+            </li>
+            <li class="Item-Menu">
+                <a href="/Locadora/Crud_Locatarios/Locatarios.html">
+                    <span class="icon"><i class="bi bi-file-earmark-fill"></i></span>
+                    <span class="txt-link">Locatários</span>
+                </a>
+            </li>
+            <li class="Item-Menu">
+                <a href="/Locadora/Crud_Alugueis/Alugueis.html">
+                    <span class="icon"><i class="bi bi-bank"></i></span>
+                    <span class="txt-link">Aluguéis</span>
+                </a>
+            </li>
+            <li class="Item-Menu">
+                <a href="/Locadora/Crud_Editoras/Editoras.html">
+                    <span class="icon"><i class="bi bi-bookmark"></i></span>
+                    <span class="txt-link">Editoras</span>
+                </a>
+            </li>
+            <li class="Item-Menu">
+                <a href="/Locadora/Login/Login.html">
+                    <span class="icon"><i class="bi bi-box-arrow-left"></i></span>
+                    <span class="txt-link">Sair</span>
+                </a>
+            </li>
+        </ul>
+    </nav><!--Tag feita para conjunto de links-->
+    </aside>
+    <main class="main-content">
+        <div class="table-background">
+        <header class="main-header">
+            <h1>Usuários</h1>
+            <div class="barradpesq">
+            <input id="searchbar" type="search" placeholder="Pesquisar Usuários...">
+            <span class="icon"><i class="bi bi-search"></i></span>
+            </div>
+        </header>
+            <div class="tabela-responsive">
+            <div class="alinhaessamerda">
+                <button class="add-button butao-cadastro" onclick="abrirpopupCadastrarusuario()">Cadastrar Usuários</button>
+                <div id="paginacao" class="paginacao"></div>
+            </div>
+            <table class="tabeladusuarios" id="tabela-dados">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th onclick="ordenarTabelaPor('name')">Nome</th>
+                        <th onclick="ordenarTabelaPor('email')">Email</th>
+                        <th onclick="ordenarTabelaPor('role')">Permissão</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="content-table">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <!-- <tr>
+                        <td>Ana Beatriz Lima</td>
+                        <td>ana.lima@email.com</td>
+                        <td>leitor</td>
+                        <td><button class="action-button botao-editar" onclick="abrirpopupEditarusuario(this)"><i class="bi bi-pencil-square"></i></button><button class="action-button botao-deletar" onclick="abrirpopupDeletarusuario(this)"><i class="bi bi-trash-fill"></i></button>
+                    </tr> -->
+                </tbody>
+            </table>
+                <!-- <div class="bar-content">
+                    <div class="addition-bar">
+                        <button class="add-button butao-cadastro" onclick="abrirpopupCadastrarusuario()">Cadastrar Usuário</button>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </main>
+
+    <dialog id="popupCadastrarusuario">
+        <form method="dialog" class="modal-content">
+            <h3>Cadastrar Novo Usuário</h3>
+            <label for="novoNomeUsuario">Nome do Usuário</label>
+            <input type="text" id="novoNomeUsuario" required><br>
+
+            <label for="novoEmailUsuario">Email do usuário</label>
+            <input type="email" id="novoEmailUsuario" required><br>
+
+            <label for="novoSenhaUsuario">Senha do Usuário</label>
+            <input type="text" id="novoSenhaUsuario" required><br>
+
+            <label for="novaPermissao">Permissão do Usuário</label><br>
+            <select id="novaPermissao" class="select-permissao" required>
+                <option value="ADMIN">ADMIN</option>
+                <option value="USER">USER</option>
+            </select>
+            <!-- <input type="text" id="novaPermissao" required><br> -->
+            <div class="Buttons">
+                <button type="button" onclick="salvarNovoUsuario()" class="Save-button">Salvar</button>
+                <button type="button" onclick="fecharpopupCadastrarusuario()" class="Cancel-button">Cancelar</button>
+            </div>
+        </form>
+    </dialog>
+    <dialog id="popupEditarusuario">
+        <form method="dialog" class="modal-content">
+            <h2>Editar Usuário</h2>
+            <input type="hidden" id="editUsuarioRowIndex">
+            <label for="editNomeUsuario">Nome do Usuário:</label>
+            <input type="text" id="editNomeUsuario" required><br>
+
+            <label for="editEmailUsuario">Email do usuário:</label>
+            <input type="email" id="editEmailUsuario" required><br>
+
+
+            <label for="editPermissao">Permissão do Usuário:</label><br>
+            <select id="editPermissao" class="select-permissao" required>
+                <option value="ADMIN">ADMIN</option>
+                <option value="USER">USER</option>
+            </select>
+            <div class="Buttons">
+                <button type="button" onclick="salvarEdicaoUsuario()" class="Save-button">Atualizar</button>
+                <button type="button" onclick="fecharpopupEditarusuario()" class="Cancel-button">Cancelar</button>
+            </div>
+        </form>
+    </dialog>
+    <dialog id="popupDeletarusuario">
+        <form method="dialog" class="modal-content">
+            <h2>Excluir Usuário</h2>
+            <p>Tem certeza que deseja excluir o Usuário: <br><strong id="NomeUsuarioexcluido"></strong>?</p>
+            <input type="hidden" id="NomeUsuarioexcluidoIndex">
+            <div class="Buttons">
+                <button type="button" onclick="confirmarExclusaoUsuario()" class="Save-button">Sim</button>
+                <button type="button" onclick="fecharpopupDeletarusuario()" class="Cancel-button">Não</button>
+            </div>
+            </form>
+    </dialog>
+</main>
+    <script src="/Locadora/Crud_Usuarios/Usuarios.js"></script>
+</body>
+</html>
