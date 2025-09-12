@@ -18,8 +18,8 @@
         .Menu-Lateral{
             width: 80px;
             height: 100vh;
-            background: linear-gradient(to right, rgba(136, 201, 223, 0.8), rgba(75, 143, 172, 0.8));
-            padding: 40px 0 40px 1%;/*Cima, Direita,Baixo, Esquerda*/
+            background: linear-gradient(to right, rgba(136, 201, 223, 0.8), rgba(75, 143, 172, 0.8));           
+            padding: 40px 0;/*Cima, Direita,Baixo, Esquerda*/
             position: relative; /* não mais fixed */
             top: 0;
             left: 0;
@@ -92,14 +92,15 @@
         .chart-box:nth-of-type(2) { 
             grid-area: grafico2; 
         }
-
         .logo-Menu{
-            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .logo-Menu img{
-            width: 60px;
-            height: auto;
-            margin-top: -100px;
+            width: 60px;           
+            height: auto;          
+            display: block;         
         }
         ul{
             height: 100%;
@@ -107,11 +108,12 @@
         }
         ul li.Item-Menu{
             transition: .2s;
-            width: 220px;
+            width: 250px;
+            padding: 0 0 0 15px;
         }
         ul li.Item-Menu:hover{
             background: rgba(0, 82, 82, 0.7);
-            border-radius: 25px;
+            border-radius: 15px;
         }
         ul li.Item-Menu a{
             color: rgba(27, 42, 56, 1);
@@ -200,23 +202,34 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.12);
         }
         .livromaisalugado h3 {
-            font-size: 30px;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #004d40; /* verde escuro para manter o tema */
-        }
+    font-size: 28px;               /* ligeiramente menor, elegante */
+    font-weight: 700;              /* destaque maior */
+    margin-bottom: 8px;            /* espaçamento mais equilibrado */
+    color: #00796b;                /* verde vibrante e moderno */
+    letter-spacing: 0.5px;         /* toque de sofisticação */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-transform: uppercase;     /* efeito moderno e clean */        
+    }
         .livromaisalugado p {
-            font-size: 25px;
-            font-weight: 500;
-            color: #00695c;
-            margin: 0;
-            font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 18px;               /* mais legível e elegante */
+    font-weight: 500;              
+    color: #004d40;                /* verde escuro para contraste */
+    margin: 0;
+    line-height: 1.5;              /* melhor leitura */
+    font-family: 'Georgia', 'Times New Roman', Times, serif; /* mantém a sofisticação */
         }
-        .livromaisalugado .icone {
-            font-size: 36px;
-            margin-bottom: 12px;
-            color: rgba(75, 143, 172, 0.6); /* discreto */
-        }
+    .livromaisalugado .icone {
+        font-size: 40px;               /* ligeiramente maior para destaque */
+        margin-bottom: 10px;
+        color: #009688;                /* verde azulado moderno e discreto */
+        display: inline-block;
+        transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .livromaisalugado .icone:hover {
+        transform: scale(1.2);
+        color: #004d40;                /* efeito hover elegante */
+}
         /* ===== GRÁFICO PRINCIPAL ===== */
         .chart-content {
             flex: 2;

@@ -11,35 +11,39 @@
             overflow-y: auto;
         }
         .Menu-Lateral{
-            width: 80px;
-            height: 100%;
-            background: linear-gradient(to right, rgba(136, 201, 223, 0.8), rgba(75, 143, 172, 0.8));
-            padding: 40px 0 40px 1%;/*Cima, Direita,Baixo, Esquerda*/
-            position: fixed;
-            top: 0;
-            left: 0;
-            overflow: hidden;
-            transition: .2s;
+    width: 80px;
+    height: 100vh;
+    background: linear-gradient(to right, rgba(136, 201, 223, 0.8), rgba(75, 143, 172, 0.8));
+    padding: 40px 0;  /* sem padding lateral */
+    position: fixed;  /* mantém fixo em todas as telas */
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    transition: .2s;
         }
         .Menu-Lateral:hover{
             width: 250px;
         }
-        .logo-Menu{
-            text-align: center;
-        }
-        .logo-Menu img{
-            width: 60px;
-            height: auto;
-            margin-top: -100px;
-        }
+.logo-Menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo-Menu img {
+    width: 60px;
+    height: auto;
+    display: block;
+}
         ul{
             height: 100%;
             list-style-type: none;
         }
-        ul li.Item-Menu{
-            transition: .2s;
-            width: 220px;
-        }
+ul li.Item-Menu {
+    width: 250px;
+    padding: 0 0 0 15px;
+    border-radius: 20px;
+    transition: 0.2s;
+}
         ul li.Item-Menu:hover{
             background: rgba(0, 82, 82, 0.7);
             border-radius: 25px;

@@ -11,35 +11,39 @@
             overflow-y: auto;    /* libera rolagem vertical */
         }
         .Menu-Lateral{
-            width: 80px;
-            height: 100%;
-            background: linear-gradient(to right, rgba(136, 201, 223, 0.8), rgba(75, 143, 172, 0.8));
-            padding: 40px 0 40px 1%;/*Cima, Direita,Baixo, Esquerda*/
-            position: fixed;
-            top: 0;
-            left: 0;
-            overflow: hidden;
-            transition: .2s;
+    width: 80px;
+    height: 100vh;
+    background: linear-gradient(to right, rgba(136, 201, 223, 0.8), rgba(75, 143, 172, 0.8));
+    padding: 40px 0;  /* sem padding lateral */
+    position: fixed;  /* mantém fixo em todas as telas */
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    transition: .2s;
         }
         .Menu-Lateral:hover{
             width: 250px;
         }
-        .logo-Menu{
-            text-align: center;
-        }
-        .logo-Menu img{
-            width: 60px;
-            height: auto;
-            margin-top: -100px;
-        }
+.logo-Menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo-Menu img {
+    width: 60px;
+    height: auto;
+    display: block;
+}
         ul{
             height: 100%;
             list-style-type: none;
         }
-        ul li.Item-Menu{
-            transition: .2s;
-            width: 220px;
-        }
+ul li.Item-Menu {
+    width: 250px;
+    padding: 0 0 0 15px;
+    border-radius: 20px;
+    transition: 0.2s;
+}
         ul li.Item-Menu:hover{
             background: rgba(0, 82, 82, 0.7);
             border-radius: 25px;
@@ -529,3 +533,123 @@ dialog.fechar-animado {
   }
 }
 
+
+
+/* Botão sair (na barra lateral) */
+button.menu-btn-sair {
+  background: none;
+  border: none;
+  color: rgba(27, 42, 56, 1);
+  font-size: 20px;
+  padding: 20px 4%;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 10px;
+  cursor: pointer;
+  border-radius: 50px;
+  transition: 0.2s;
+  width: 100%;
+  text-align: left;
+}
+
+button.menu-btn-sair .icon i {
+  font-size: 25px;
+  margin-left: -5px;
+  color: black;
+}
+
+/* Popup de sair */
+#popupDeSair {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 35px 45px;
+  background: linear-gradient(135deg, #88C9DF, #4B8FAC);
+  position: fixed;
+  border: none;
+  border-radius: 20px;
+  min-width: 350px;
+  max-width: 420px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  color: #1B2A38;
+}
+
+/* Cabeçalho */
+#popupDeSair h3 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #1B2A38;
+  margin-bottom: 10px;
+}
+
+/* Texto */
+#popupDeSair p {
+  font-size: 16px;
+  margin-bottom: 25px;
+  line-height: 1.4;
+}
+
+/* Container dos botões */
+#popupDeSair .Buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+/* Botões */
+#popupDeSair button {
+  flex: 1;
+  padding: 10px 15px;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  font-size: 15px;
+  transition: transform 0.2s, background 0.2s;
+}
+
+/* Botão confirmar */
+#popupDeSair button.Confirm-button {
+  background: #ffffff;
+  border: 2px solid #2F6F8F;
+  color: #2F6F8F;
+}
+#popupDeSair button.Confirm-button:hover {
+  background: #2F6F8F;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* Botão cancelar */
+#popupDeSair button.Cancel-button {
+  background: #ffffff;
+  border: 2px solid #c95454;
+  color: #c95454;
+}
+#popupDeSair button.Cancel-button:hover {
+  background: #c95454;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* Entrada */
+@keyframes popupFadeIn {
+  from { transform: translate(-50%, -40%) scale(0.9); opacity: 0; }
+  to   { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+/* Saída */
+@keyframes popupFadeOut {
+  from { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  to   { transform: translate(-50%, -60%) scale(0.9); opacity: 0; }
+}
+
+/* Aplicando */
+#popupDeSair[open] {
+  animation: popupFadeIn 0.3s ease forwards;
+}
+#popupDeSair.fechar-animado {
+  animation: popupFadeOut 0.3s ease forwards;
+}

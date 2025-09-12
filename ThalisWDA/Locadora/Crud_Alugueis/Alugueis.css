@@ -10,36 +10,40 @@
             overflow-x: hidden;
             overflow-y: auto;
         }
-        .Menu-Lateral{
-            width: 80px;
-            height: 100%;
-            background: linear-gradient(to right, rgba(136, 201, 223, 0.8), rgba(75, 143, 172, 0.8));
-            padding: 40px 0 40px 1%;/*Cima, Direita,Baixo, Esquerda*/
-            position: fixed;
-            top: 0;
-            left: 0;
-            overflow: hidden;
-            transition: .2s;
+    .Menu-Lateral{
+    width: 80px;
+    height: 100vh;
+    background: linear-gradient(to right, rgba(136, 201, 223, 0.8), rgba(75, 143, 172, 0.8));
+    padding: 40px 0;  /* sem padding lateral */
+    position: fixed;  /* mantém fixo em todas as telas */
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    transition: .2s;
         }
         .Menu-Lateral:hover{
             width: 250px;
         }
-        .logo-Menu{
-            text-align: center;
-        }
-        .logo-Menu img{
-            width: 60px;
-            height: auto;
-            margin-top: -100px;
-        }
+.logo-Menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo-Menu img {
+    width: 60px;
+    height: auto;
+    display: block;
+}
         ul{
             height: 100%;
             list-style-type: none;
         }
-        ul li.Item-Menu{
-            transition: .2s;
-            width: 220px;
-        }
+ul li.Item-Menu {
+    width: 250px;
+    padding: 0 0 0 15px;
+    border-radius: 20px;
+    transition: 0.2s;
+}
         ul li.Item-Menu:hover{
             background: rgba(0, 82, 82, 0.7);
             border-radius: 25px;
@@ -86,6 +90,7 @@
         transition: background-color 0.3s ease;
         box-shadow: 0 8px 20px rgba(0,0,0,0.2);
         max-width: 95%; /* para não ultrapassar muito na largura */
+        min-width: 1250px; /* impede de ficar pequena demais */
         margin: auto; /* centraliza horizontalmente */ 
         }
         .main-header{
@@ -118,10 +123,6 @@
             margin-left: 250px;
 }
         .tabela-responsive{
-        /* margin: 0;
-        padding-top: 8px;
-        transform: none;
-        width: 100%; */
             width: 100%;
             overflow-x: auto; /* scroll lateral no mobile */
             -webkit-overflow-scrolling: touch;
@@ -129,6 +130,9 @@
     .alinhaessamerda{
         display: flex;
         justify-content: space-between ;
+        background-color: rgba(128, 128, 128, 0.05);
+        padding: 10px 5px;
+        border-radius: 10px;
     }
     button.butao-cadastro{
             background-color: #007BFF;
@@ -183,6 +187,11 @@
         border-collapse: collapse;
         overflow: hidden;        /* evita cantos cortados quando hover altera bg */
     }
+    .tabeladalugueis td {
+        white-space: normal;   /* permite quebra automática */
+        word-wrap: break-word; /* quebra dentro de palavras grandes */
+        max-width: 250px;      /* controla a largura máxima da célula */
+    }
         thead{
         background: linear-gradient(to right, rgba(136, 201, 223, 1), rgba(75, 143, 172, 0.8));
         color: rgb(38, 38, 92);
@@ -211,22 +220,22 @@ button{
         transition: all 0.2s ease;
 }
 button.botao-editar{
-    background: linear-gradient(to right, rgba(136, 201, 223, 0.8), rgba(75, 143, 172, 0.8));
+    background: linear-gradient(to right, rgba(136, 201, 223, 1), rgba(75, 143, 172, 0.8));
     border-radius: 5px;
-    color: white;
+    color: black;
     padding: 6px 8px;
 }
 button.botao-editar:hover{
     background: linear-gradient(to right, rgba(136, 201, 223, 1), rgba(75, 143, 172, 1));
 }
 button.botao-deletar{
-    background: rgba(255, 0, 0, 0.7);
+    background: rgba(47, 255, 0, 0.7);
     border-radius: 5px;
-    color: white;
+    color: black;
     padding: 6px 8px;
 }
 button.botao-deletar:hover{
-    background: rgba(255, 0, 0, 0.85);
+    background: rgba(255, 0, 0, 0.7);
 }
 button:hover{
     font-size: 15.2px;

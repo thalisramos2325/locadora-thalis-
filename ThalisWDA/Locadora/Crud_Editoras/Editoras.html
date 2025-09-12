@@ -163,6 +163,21 @@
             </div>
         </form>
     </dialog>
+    <dialog id="popupDeSair">
+    <form method="dialog" class="modal-content">
+        <h3>Confirmação de saída</h3>
+
+        <p>Você está logado como:</p>
+        <p><strong id="usuarioEmail">—</strong></p>
+
+        <p>Deseja realmente sair?</p>
+
+        <div class="Buttons">
+        <button type="button" onclick="confirmarSaida()" class="Save-button">Sim</button>
+        <button type="button" onclick="fecharPopupSair()" class="Cancel-button">Cancelar</button>
+        </div>
+    </form>
+    </dialog>
 </main>
     <script src="/Locadora/Crud_Editoras/Editoras.js"></script>
 </body>
