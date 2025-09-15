@@ -171,6 +171,17 @@
         const tabela = document.getElementById("tabela-dados").getElementsByTagName("tbody")[0];
         tabela.innerHTML = "";
 
+        if (alugueisFiltrados.length === 0) {
+        tabela.innerHTML = `
+            <tr>
+                <td colspan="10" style="text-align:center; padding: 20px; font-weight: bold; color: #666;">
+                    Nenhum Resultado Encontrado
+                </td>
+            </tr>
+        `;
+        return; // sai da função
+    }
+
         const inicio = (paginaAtual - 1) * porPagina;
         const fim = inicio + porPagina;
         const pagina = alugueisFiltrados.slice(inicio, fim);
@@ -181,15 +192,14 @@
             const nomeLivro = aluguel.book?.name || "—";
             const nomeRenter = aluguel.renter?.name || "—";
 
-            row.insertCell(0).textContent = aluguel.id;
-            row.insertCell(1).textContent = nomeLivro;
-            row.insertCell(2).textContent = nomeRenter;
-            row.insertCell(3).textContent = formatarData(aluguel.deadLine);
-            row.insertCell(4).textContent = formatarData(aluguel.devolutionDate);
-            row.insertCell(5).textContent = formatarData(aluguel.rentDate);
-            row.insertCell(6).textContent = traduzirStatus(aluguel.status);
+            row.insertCell(0).textContent = nomeLivro;
+            row.insertCell(1).textContent = nomeRenter;
+            row.insertCell(2).textContent = formatarData(aluguel.deadLine);
+            row.insertCell(3).textContent = formatarData(aluguel.devolutionDate);
+            row.insertCell(4).textContent = formatarData(aluguel.rentDate);
+            row.insertCell(5).textContent = traduzirStatus(aluguel.status);
 
-    const acoesCell = row.insertCell(7);
+    const acoesCell = row.insertCell(6);
 
     // Só mostra botões se aluguel ainda não estiver finalizado
     if (aluguel.status === "RENTED") {

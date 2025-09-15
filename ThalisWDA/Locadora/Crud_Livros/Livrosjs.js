@@ -181,15 +181,25 @@
         const tabela = document.getElementById("tabela-dados").getElementsByTagName("tbody")[0];
         tabela.innerHTML = "";
 
+        if (livrosFiltrados.length === 0) {
+        tabela.innerHTML = `
+            <tr>
+                <td colspan="10" style="text-align:center; padding: 20px; font-weight: bold; color: #666;">
+                    Nenhum Resultado Encontrado
+                </td>
+            </tr>
+        `;
+        return; // sai da função
+    }
+
         const inicio = (paginaAtual - 1) * porPagina;
         const fim = inicio + porPagina;
         const livrosPagina = livrosFiltrados.slice(inicio, fim);
 
         livrosPagina.forEach(livro => {
             const row = tabela.insertRow();
-            row.insertCell(0).textContent = livro.id;
-            row.insertCell(1).textContent = livro.name;
-            row.insertCell(2).textContent = livro.author;
+            row.insertCell(0).textContent = livro.name;
+            row.insertCell(1).textContent = livro.author;
 
             let publisherName = "Não informado";
             if (livro.publisher?.id) {
@@ -198,11 +208,11 @@
                 publisherName = editorasMap[livro.publisher] || "Desconhecido";
             }
 
-            row.insertCell(3).textContent = publisherName;
-            row.insertCell(4).textContent = new Date(livro.launchDate).toLocaleDateString();
-            row.insertCell(5).textContent = livro.totalQuantity;
+            row.insertCell(2).textContent = publisherName;
+            row.insertCell(3).textContent = new Date(livro.launchDate).toLocaleDateString();
+            row.insertCell(4).textContent = livro.totalQuantity;
 
-            const acoesCell = row.insertCell(6);
+            const acoesCell = row.insertCell(5);
             const divBotoes = document.createElement("div");
             divBotoes.className = "acoes-container";
             divBotoes.style.display = "flex";
@@ -383,30 +393,20 @@
         }
     }
 
-    // ================= PESQUISAR =================
-    const inputBuscaLivros = document.getElementById("searchbar");
-
-    inputBuscaLivros.addEventListener("keyup", () => {
-        const expressao = inputBuscaLivros.value.toLowerCase().trim();
-
-        if (expressao === "") {
-            // se busca vazia, restaura todos
-            livrosFiltrados = [...livros];
-        } else {
-            // aplica filtro
-            livrosFiltrados = livros.filter(livro =>
-                (livro.name || "").toLowerCase().includes(expressao) ||
-                (livro.author || "").toLowerCase().includes(expressao) ||
-                (editorasMap[livro.publisher?.id || livro.publisher] || "")
-                    .toLowerCase()
-                    .includes(expressao)
-            );
-        }
-
-        paginaAtual = 1; // sempre volta para a primeira página
-        listarLivros();
-        renderPaginacao();
-    });
+function pesquisarLivros() {
+    const input = document.getElementById("searchbar").value.toLowerCase();
+    livrosFiltrados = livros.filter(l =>
+        (l.name || "").toLowerCase().includes(input) ||
+        (l.author || "").toLowerCase().includes(input) ||
+        (l.publisher?.name || "").toLowerCase().includes(input) ||
+        (l.launchDate || "").toLowerCase().includes(input) ||
+        (l.totalQuantity?.toString() || "").toLowerCase().includes(input)
+    );
+    paginaAtual = 1;
+    listarLivros();
+    renderPaginacao();
+}
+document.getElementById("searchbar").addEventListener("keyup", pesquisarLivros);
 
 
     // ---------------- utilitário para pegar o email do usuário do localStorage ou do token ----------------

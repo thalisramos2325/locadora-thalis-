@@ -145,6 +145,16 @@
     const tabela = document.getElementById('tabela-dados').getElementsByTagName('tbody')[0];
     tabela.innerHTML = ""; 
 
+        if (usuariosFiltrados.length === 0) {
+        tabela.innerHTML = `
+            <tr>
+                <td colspan="10" style="text-align:center; padding: 20px; font-weight: bold; color: #666;">
+                    Nenhum Resultado Encontrado
+                </td>
+            </tr>
+        `;
+        return; // sai da função
+    }
 
     const inicio = (paginaAtual - 1) * porPagina;
     const fim = inicio + porPagina;
@@ -153,12 +163,11 @@
 
     paginaUsuarios.forEach(usuario => {
         const row = tabela.insertRow();
-        row.insertCell(0).textContent = usuario.id;
-        row.insertCell(1).textContent = usuario.name;
-        row.insertCell(2).textContent = usuario.email;
-        row.insertCell(3).textContent = traduzirRole(usuario.role);
+        row.insertCell(0).textContent = usuario.name;
+        row.insertCell(1).textContent = usuario.email;
+        row.insertCell(2).textContent = traduzirRole(usuario.role);
 
-        const acoesCell = row.insertCell(4);
+        const acoesCell = row.insertCell(3);
         const divBotoes = document.createElement("div");
         divBotoes.className = "acoes-container";
         divBotoes.style.display = "flex";

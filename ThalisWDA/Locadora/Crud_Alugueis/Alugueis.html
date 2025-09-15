@@ -71,11 +71,14 @@
             <span class="icon"><i class="bi bi-search"></i></span>
             </div>
         </header>
+                    <div class="alinhaessamerda">
+                        <button class="add-button butao-cadastro" onclick="abrirpopupCadastraraluguel()">Registrar Aluguél</button>
+                        <div id="paginacao" class="paginacao"></div>
+                    </div>
         <div class="tabela-responsive">
             <table class="tabeladalugueis" id="tabela-dados">
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th onclick="ordenarTabelaPor('book')">Livro</th>
                         <th onclick="ordenarTabelaPor('renter')">Locatario</th>
                         <th>Prazo</th>
@@ -86,10 +89,6 @@
                     </tr>
                 </thead>
                 <tbody id="content-table">
-                    <div class="alinhaessamerda">
-                        <button class="add-button butao-cadastro" onclick="abrirpopupCadastraraluguel()">Registrar Aluguél</button>
-                        <div id="paginacao" class="paginacao"></div>
-                    </div>
                     <tr>
                         <!-- <td>A Menina Que Roubava Livros </td>
                         <td>Luscas Andrade Silva</td>

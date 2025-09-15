@@ -148,6 +148,17 @@
         const tabela = document.getElementById('tabela-dados').getElementsByTagName('tbody')[0];
         tabela.innerHTML = ""; // limpa tabela antes de preencher
 
+        if (editorasFiltrados.length === 0) {
+        tabela.innerHTML = `
+            <tr>
+                <td colspan="10" style="text-align:center; padding: 20px; font-weight: bold; color: #666;">
+                    Nenhum Resultado Encontrado
+                </td>
+            </tr>
+        `;
+        return; // sai da função
+    }
+
         // calcular os limites da página
         const inicio = (paginaAtual - 1) * porPagina;
         const fim = inicio + porPagina;
@@ -157,13 +168,12 @@
 
         editorasPagina.forEach((editora, index) => {
             const row = tabela.insertRow();
-            row.insertCell(0).textContent = editora.id;
-            row.insertCell(1).textContent = editora.name;
-            row.insertCell(2).textContent = editora.email;
-            row.insertCell(3).textContent = formatarTelefone(editora.telephone);
-            row.insertCell(4).textContent = editora.site;
+            row.insertCell(0).textContent = editora.name;
+            row.insertCell(1).textContent = editora.email;
+            row.insertCell(2).textContent = formatarTelefone(editora.telephone);
+            row.insertCell(3).textContent = editora.site;
 
-            const acoesCell = row.insertCell(5);
+            const acoesCell = row.insertCell(4);
             const divBotoes = document.createElement("div");
             divBotoes.className = "acoes-container"; 
             divBotoes.style.display = "flex";        

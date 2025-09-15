@@ -90,7 +90,7 @@ ul li.Item-Menu {
         transition: background-color 0.3s ease;
         box-shadow: 0 8px 20px rgba(0,0,0,0.2);
         max-width: 95%; /* para não ultrapassar muito na largura */
-        min-width: 1250px; /* impede de ficar pequena demais */
+        min-width: 900px; /* impede de ficar pequena demais */
         margin: auto; /* centraliza horizontalmente */ 
         }
         .main-header{
@@ -127,13 +127,16 @@ ul li.Item-Menu {
             overflow-x: auto; /* scroll lateral no mobile */
             -webkit-overflow-scrolling: touch;
     }
-    .alinhaessamerda{
-        display: flex;
-        justify-content: space-between ;
-        background-color: rgba(128, 128, 128, 0.05);
-        padding: 10px 5px;
-        border-radius: 10px;
-    }
+    /* Espaçamento entre linhas na tabela */
+.tabeladalugueis tr {
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.alinhaessamerda {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px; /* garante espaço entre botão/paginação e tabela */
+}
     button.butao-cadastro{
             background-color: #007BFF;
             color: white;
@@ -147,37 +150,37 @@ ul li.Item-Menu {
             color: white;
             border-color: #007BFF;
     }
-        #paginacao{
-        margin-top: 15px;
-        text-align: right;
-        }
-        /* Estilo básico dos botões */
-        #paginacao button{
-        background-color: #f4f4f4;
-        border: 1px solid #ccc;
-        color: #333;
-        /* padding: 8px 12px; */
-        margin: 0 3px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        }
+#paginacao {
+    margin-top: 15px;
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 5px;
+}
 
-        /* Efeito ao passar o mouse */
-        #paginacao button:hover {
-        background: rgba(0, 123, 255, 0.7);
-        color: white;
-        border-color: #007BFF;
-        }
+#paginacao button {
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    color: #333;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
 
-        /* Botão ativo (página atual) */
-        #paginacao button.ativa {
-        background-color: #007BFF;
-        color: white;
-        font-weight: bold;
-        border-color: #0056b3;
-        cursor: default;
-        }
+#paginacao button:hover {
+    background-color: rgba(0, 123, 255, 0.7);
+    color: white;
+}
+
+#paginacao button.ativa {
+    background-color: #007BFF;
+    color: white;
+    font-weight: bold;
+    border-color: #0056b3;
+    cursor: default;
+}
     .tabeladalugueis{
         padding: 0;
         margin-bottom: 10px;
@@ -187,6 +190,10 @@ ul li.Item-Menu {
         border-collapse: collapse;
         overflow: hidden;        /* evita cantos cortados quando hover altera bg */
     }
+    /* Botões na tabela */
+.tabeladalugueis button {
+    margin: 2px;
+}
     .tabeladalugueis td {
         white-space: normal;   /* permite quebra automática */
         word-wrap: break-word; /* quebra dentro de palavras grandes */
@@ -198,7 +205,9 @@ ul li.Item-Menu {
         font-weight: bold;
     }
     thead th{
-        background: rgba(255,255,255,0.06); /* leve diferenciação, opcional */
+    padding: 12px;
+    font-weight: 600;
+    border-bottom: 2px solid #ccc; /* borda discreta */
     }
     th, td {
     padding: 0.6em;
@@ -488,54 +497,51 @@ dialog.fechar-animado {
   .main-header h1 { font-size: 22px; }
   .main-header .barradpesq input#searchbar { width: 100%; }
 
-  /* Tabela -> vira cards */
-  .tabeladalugueis thead { display: none; }
-  .tabeladalugueis, 
-  .tabeladalugueis tbody, 
-  .tabeladalugueis tr, 
-  .tabeladalugueis td {
-    display: block; 
-    width: 100%;
-  }
-  .tabeladalugueis tr {
-    margin: 10px 0;
-    border: 1px solid rgba(0,0,0,0.1);
-    border-radius: 12px;
-    padding: 12px;
-    background: rgba(255,255,255,0.95);
-    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-  }
-  .tabeladalugueis td {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px 10px;
-    font-size: 14px;
-  }
-  .tabeladalugueis td::before {
+ @media (max-width: 768px) {
+    .table-background {
+        padding: 20px;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .tabeladalugueis thead {
+        display: none; /* oculta cabeçalho */
+    }
+
+    .tabeladalugueis, 
+    .tabeladalugueis tbody, 
+    .tabeladalugueis tr, 
+    .tabeladalugueis td {
+        display: block;
+        width: 100%;
+    }
+
+    .tabeladalugueis tr {
+        margin: 10px 0;
+        border: 1px solid rgba(0,0,0,0.1);
+        border-radius: 12px;
+        padding: 12px;
+        background: rgba(255,255,255,0.95);
+        box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
+
+    .tabeladalugueis td {
+        display: flex;
+        justify-content: flex-start;
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+
+.tabeladalugueis td::before {
     content: attr(data-label);
     font-weight: bold;
     color: #006666;
-    margin-right: 10px;
-  }
+    margin-right: 4px; /* menos espaço, fica mais natural */
+    flex-shrink: 0; /* não deixa o label "espremer" */
+}
 
-  /* Paginação */
-  #paginacao {
-    display: flex; 
-    justify-content: center; 
-    flex-wrap: wrap; 
-    gap: 6px;
-  }
-  #paginacao button {
-    flex: 1; 
-    min-width: 40px; 
-    max-width: 70px; 
-    padding: 6px;
-  }
-
-  /* Caixa tabela */
-  .table-background { 
-    padding: 20px; 
-    max-width: 100%; 
-    border-radius: 15px; 
-  }
+    #paginacao {
+        justify-content: center;
+    }
+}
 }

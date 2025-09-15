@@ -97,18 +97,29 @@
     function listarLocatarios() {
         const tabela = document.getElementById("tabela-dados").getElementsByTagName("tbody")[0];
         tabela.innerHTML = "";
+
+        if (locatariosFiltrados.length === 0) {
+        tabela.innerHTML = `
+            <tr>
+                <td colspan="10" style="text-align:center; padding: 20px; font-weight: bold; color: #666;">
+                    Nenhum Resultado Encontrado
+                </td>
+            </tr>
+        `;
+        return; // sai da função
+    }
+
         const inicio = (paginaAtual - 1) * porPagina;
         const fim = inicio + porPagina;
         const locatariosPagina = locatariosFiltrados.slice(inicio, fim);
         locatariosPagina.forEach(locatario => {
             const row = tabela.insertRow();
-            row.insertCell(0).textContent = locatario.id;
-            row.insertCell(1).textContent = locatario.name;
-            row.insertCell(2).textContent = locatario.email;
-            row.insertCell(3).textContent = formatarTelefone(locatario.telephone);
-            row.insertCell(4).textContent = locatario.address;
-            row.insertCell(5).textContent = formatarCPF(locatario.cpf);
-            const acoesCell = row.insertCell(6);
+            row.insertCell(0).textContent = locatario.name;
+            row.insertCell(1).textContent = locatario.email;
+            row.insertCell(2).textContent = formatarTelefone(locatario.telephone);
+            row.insertCell(3).textContent = locatario.address;
+            row.insertCell(4).textContent = formatarCPF(locatario.cpf);
+            const acoesCell = row.insertCell(5);
             const divBotoes = document.createElement("div");
             divBotoes.className = "acoes-container";
             divBotoes.style.display = "flex";
